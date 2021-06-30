@@ -1,0 +1,55 @@
+﻿@model IEnumerable<Tuan3_Bai1.Models.Book>
+
+@{
+    ViewBag.Title = "Index";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<h2>Index</h2>
+
+<p>
+    @Html.ActionLink("Create New", "Create")
+</p>
+<table class="table">
+    <tr>
+        <th>
+            @Html.DisplayNameFor(model => model.TITLE)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.AUTHOR)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.PRICE)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.IMAGES)
+        </th>
+        <th></th>
+    </tr>
+
+@foreach (var item in Model) {
+    <tr>
+        <td>
+            @Html.DisplayFor(modelItem => item.TITLE)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.AUTHOR)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.PRICE)
+        </td>
+        <td>
+            <img src="~/images/@Url.Content(item.IMAGES)" height="90" width="90" />
+        </td>
+        <td>
+            @Html.ActionLink("Edit", "Edit", new { id=item.ID }) |
+            @Html.ActionLink("Details", "Details", new { id=item.ID }) |
+            @Html.ActionLink("Delete", "Delete", new { id=item.ID })
+        </td>
+        <td>
+            <a href="@Url.Action("Buy","Books" , new { id = item.ID})" class="btn btn-primary">Buy</a>
+        </td>
+    </tr>
+}
+
+</table>
